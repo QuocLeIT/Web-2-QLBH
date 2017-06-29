@@ -141,6 +141,19 @@ namespace WebDoAn.Helpers
 
             return ret;
         }
+        
+         public static Rquest GetReQuest()
+        {
+            var ret = (Rquest)HttpContext.Current.Session["request"];
+            if (ret == null)
+            {
+                ret = new Rquest();
+                HttpContext.Current.Session["request"] = ret;
+
+            }
+
+            return ret;
+        }
 
         public static void Destroy()
         {

@@ -143,6 +143,12 @@
             }
         });
 
+    
+        $('.addSell').on('click', function () {
+            var iduser = $(this).data('id');
+            $('#txtiduser').val(iduser)           
+            $('#frmAddSell').submit();
+        });
 </script>
 
 }
@@ -154,6 +160,10 @@
 }
 else
 {       
+     <form id="frmAddSell" method="post" action="@Url.Action("AddSell", "ReQuest", new { id = @Model.f_ID })">
+        <input type="hidden" id="txtiduser" name="iduser" />
+    </form>
+    
     <div class="row-fluid">
         <div class="col-md-12">
             <table class="table table-hover">
@@ -363,6 +373,34 @@ else
                         </td>
                     </tr>
                    
+                    <tr>
+                        <td>
+                            <div class="col-md-12 caption-lg-orange">
+                                <h5><b>Loại tài khoản</b></h5>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col-md-12 caption-lg-orange">
+                                @if (@Model.f_Seller == 0)
+                                { 
+                                    <h5>Chưa là người bán, nâng cấp tài khoản để bán</h5>
+                                }
+                               else
+                                { 
+                                     <h5>Tải khoản có thể đăng bán</h5>
+                                }
+                            </div>
+                        </td>
+                        @if (@Model.f_Seller == 0)
+                        {
+                            <td>
+                                <a href="javascript:;" class="addSell" data-id="@Model.f_ID">
+                                    Yêu cầu nâng cấp tài khoản
+                                </a>
+                            </td>
+                        }
+                        
+                    </tr>
                 </tbody>
               
             </table>
