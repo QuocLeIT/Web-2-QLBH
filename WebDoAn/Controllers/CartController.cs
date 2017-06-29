@@ -205,7 +205,7 @@ namespace WebDoAn.Controllers
                 //}
 
                     //Remove(u.Product.ProID);//xoá sản phẩm đã thắng khỏi danh sách
-                    }
+                    
                 }
             }
 
@@ -213,5 +213,16 @@ namespace WebDoAn.Controllers
             return RedirectToAction("Index", "Cart");
         }      
 
-	}
+	
+        public ActionResult HistoryProduct(int? id)
+        {
+             var c = CurrentContext.GetCart();
+             var u = c.Items
+                 .Where(i => i.Product.ProID == id)
+                 .OrderByDescending(l => l.DateDG)
+                 .ToList();
+             return View(u);
+        }
+}
+
 }
