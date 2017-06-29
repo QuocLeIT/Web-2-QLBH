@@ -1,0 +1,51 @@
+﻿@using WebDoAn.Models
+@using WebDoAn.Helpers
+
+@model List<CartItem>
+
+@section view_title {
+    <h4><b>Lịch sử đấu giá sản phẩm</b></h4>
+}
+
+@section css{
+    <style type="text/css">
+
+    </style>
+
+}
+
+@if (Model == null)
+{
+    <text>Không có lịch sử nào</text>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="tieude">
+                        <th class="col-sm-4">Tên người dùng</th>
+                        <th class="col-sm-3">Thơi gian đấu giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var cim in Model)
+                    {
+                        <tr>
+                            <td>@CurrentContext.GetCart().OutNameUser(cim.idUser)</td>
+
+                            <td>@cim.DateDG</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@section js {
+    <script type="text/javascript">
+
+    </script>
+}
