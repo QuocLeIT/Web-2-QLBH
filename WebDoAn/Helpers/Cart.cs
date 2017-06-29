@@ -138,6 +138,22 @@ namespace WebDoAn.Helpers
             return kq;
         }
         
+        
+        public string OutNameUser(int id)
+        {
+            using (var ctx = new QLBHEntities())
+            {
+                var pro = ctx.Users
+                    .Where(p => p.f_ID == id)
+                    .FirstOrDefault();
+
+                if (pro != null)
+                    return pro.f_Name;
+                else
+                    return null;
+            }
+        }
+        
     }
     public class CartItem
     {
@@ -146,6 +162,7 @@ namespace WebDoAn.Helpers
         public decimal Price { get; set; }
         public int idUser { get; set; }
         public decimal moneyUser { get; set; }
+        public DateTime DateDG { get; set; }
     }
 
    
