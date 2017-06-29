@@ -147,7 +147,7 @@ else
         
     </div>
     <br />
-    if (CurrentContext.IsLogged())
+    if (CurrentContext.IsLogged()  && Model.DateTime >= DateTime.Now)
     {
 
         <form class="form-horizontal" id="frmAddItem" method="post" action="@Url.Action("Add", "Cart")">
@@ -184,34 +184,23 @@ else
                         
                     </div>
                     <br />
-                    <input id="txtPri" type="number" name="proPrice" class="form-control" placeholder="Giá đấu" value="@(Model.Price + 100000)">
-
-                    <!-- Modal -->
-                    @*<a href="#"  role="button" data-toggle="modal" data-target="#myModal">                       
-                        Hi
-                    </a>
-                    
-                    <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Giá đấu không hợp lệ</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <h5>Đã có ngươi ra giá cao hơn giá của bạn</h5>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
-
-
+                    <input id="txtPri" type="number" name="proPrice" class="form-control" placeholder="Giá đấu" value="@(Model.Price + 100000)">             
                 </div>
             </div>
         </form>
+        <div class="col-md-12 padding">
+            <a href="@Url.Action("HistoryProduct", "Cart", new { id = @Model.ProID })" class="btn btn-primary" style="background-color: #00cc44" role="button">
+                Lịch sử đấu giá
+            </a>
+        </div>
+    }
+    else
+    {
+        if (Model.DateTime < DateTime.Now)
+        { 
+            <h3 class="datecolor"><b>Hết thời gian đấu giá</b></h3>
+        }
+        
     }
 
 }
